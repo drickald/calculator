@@ -1,0 +1,297 @@
+/* CSS Variables for Themes */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --danger-color: #e74c3c;
+  --bg-color: #a2e9fc;
+  --surface-color: #abcaf8;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --border-color: #0dc7f5;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+  --transition: all 0.3s ease;
+}
+
+/* Night Theme */
+[data-theme="night"] {
+  --bg-color: #1a1a2e;
+  --surface-color: #16213e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #2d3561;
+  --primary-color: #0f4c75;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #02345e 100%);
+  color: var(--text-primary);
+  transition: var(--transition);
+  line-height: 1.6;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+[data-theme="night"] body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 1000;
+  background: var(--bg-color);
+  padding: 8px;
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+}
+
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-color);
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.theme-btn:hover {
+  transform: scale(1.1);
+  border-color: var(--primary-color);
+}
+
+.theme-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Container */
+.container {
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto 0;
+  margin-top: 150px;
+  padding: 5px;
+  border-radius: 20px;
+  animation: slideUp 0.6s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Calculator Card */
+.calculator-card {
+  background: linear-gradient(135deg, #667eea 0%, #05508e 100%);
+  padding: 25px;
+  border-radius: 16px;
+  color: white;
+  animation: fadeIn 0.5s ease;
+  box-shadow: var(--shadow-hover);
+  width: 100%;
+  max-width: 380px;
+}
+
+[data-theme="night"] .calculator-card {
+  background: linear-gradient(135deg, #0f4c75 0%, #1a1a2e 100%);
+}
+
+#display {
+  width: 100%;
+  padding: 18px;
+  margin-bottom: 18px;
+  font-size: 1.8em;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  text-align: right;
+  cursor: not-allowed;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.buttons {
+  display: grid;
+  gap: 8px;
+}
+
+.first-row,
+.second-row,
+.third-row,
+.fourth-row,
+.fifth-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.fifth-row {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.btn {
+  padding: 16px;
+  font-size: 1.1em;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.operator {
+  background: rgba(255, 255, 255, 0.25);
+  font-weight: 700;
+}
+
+.operator:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.btn[data-value="C"],
+.btn[data-value="DEL"] {
+  background: #e74c3c;
+}
+
+.btn[data-value="C"]:hover,
+.btn[data-value="DEL"]:hover {
+  background: #c0392b;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+    margin: 15px auto 0;
+    max-width: 100%;
+  }
+
+  .header h1 {
+    font-size: 1.6em;
+  }
+
+  #display {
+    font-size: 1.5em;
+    padding: 14px;
+  }
+
+  .calculator-card {
+    padding: 18px;
+    max-width: 100%;
+  }
+
+  .btn {
+    padding: 14px;
+    font-size: 1em;
+  }
+
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.btn[data-value="="] {
+    background: #51cf66;
+    font-size: 1.3em;
+}
+
+.btn[data-value="="]:hover {
+    background: #40c057;
+}
+
+.zero {
+    grid-column: span 1;
+}
+
+@media (max-width: 400px) {
+    .calculator {
+        max-width: 90vw;
+        padding: 15px;
+    }
+
+    #display {
+        padding: 15px;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        padding: 15px;
+        font-size: 1em;
+    }
+
+    .first-row,
+    .second-row,
+    .third-row,
+    .fourth-row,
+    .fifth-row {
+        gap: 8px;
+    }
+
+    .buttons {
+        gap: 8px;
+    }
+}
